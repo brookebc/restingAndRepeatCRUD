@@ -124,6 +124,9 @@ body {
   text-overflow: ellipsis;
   padding: 10px 5px 10px 50px;
   text-transform: capitalize;
+  // vertical-align: top;
+  // display: block;
+
 }
 
 .list li:hover {
@@ -148,6 +151,9 @@ body {
   left: 40px;
 }
 
+.list ul {
+  display: inline-block;
+}
 .app-nav {
     width: 600px;
 }
@@ -167,6 +173,33 @@ body {
     padding: 0px;
     width: 100%;
 }
+
+
+.completed {
+  text-decoration: line-through;
+
+}
+
+h4 {
+  color: #cd0000;
+  font-size: 42px;
+  letter-spacing: -2px;
+  text-align: left;
+}
+
+.glyphicon-pencil {
+  padding-left: 400px;
+}
+
+.glyphicon-ok {
+  padding: auto, auto, auto, 20px;
+}
+
+// .glyphicon-ok {
+//   padding-left: 20px;
+// }
+
+// glyphicon glyphicon-ok completed
 
 // .papers {
 //   background-color: white;
@@ -200,14 +233,3 @@ body {
     
 // }
 
-.completed {
-  text-decoration: line-through;
-
-}
-
-h4 {
-  color: #cd0000;
-  font-size: 42px;
-  letter-spacing: -2px;
-  text-align: left;
-}

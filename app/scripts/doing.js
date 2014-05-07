@@ -1,103 +1,118 @@
-$("form").on("submit",function(e) {
-	e.preventDefault();
-	// console.log("hello in keydown");
+$(document).ready(function(){
 
-	// if(e.keyCode === 13) {
-		// console.log("hello Brooke");
-	var readytoadd = $("#newitemtoadd").val();
-	console.log(readytoadd);
+ToDos.init();
 
-	var newServerObject = {
-		name: readytoadd
-	};
-	console.log(newServerObject);
-	myObj.postToDo(newServerObject);
-	myObj.getToDo(newServerObject);
 });
 
 
-var myObj = {
-	postToDo: function(data) { 
-		var newTodo = data;
+var ToDos = {
+init: function() {
+	this.initStyling();
+	this.initEvents();
+
+},
+
+initStyling: function() {
+	this.renderToDos();
+},
+initEvents: function(){
+	$("form").on("submit",this.addToDos);
+},
+
+renderToDos: function(){
+	
+	$.ajax({
+			type:"GET",
+			url: "http://tiy-fee-rest.herokuapp.com/collections/brookebc",
+			datatype: "json",
+			error: function(jqXHR, status, error){
+				alert("no! it is not posting this to the page.");
+			},
+			success: function (data, datatype, jqXHR){
+				var todos = data;
+				console.log(todos);
+				
+				var html = '';
+
+				for (var i = 0; i <todos.length; i++){
+					// var obj = data[i].data;
+
+					// console.log(data);
+					
+					// var name = name;
+					// var name = name;
+					
+				html += '<li data-postId=' + todos[i]._id + '>' + todos[i].name + '<span class="glyphicon glyphicon-remove removeToDo"></span></li>';
+				}; var postId = $(this).closest("article").data("postid");
+
+				console.log("yeah it is working down here- about to add all the todos to the page");
+				$("#righthere").html(html);
+			}
+		});
+	},
+
+
+addToDos: function(e) {
+    e.preventDefault();
+    // var data = data;
+
+    var newToDo = {
+              name: $("#newitemtoadd").val(),
+              // _.id: 
+        };
 
 	$.ajax({
 		type:"POST",
 		url: "http://tiy-fee-rest.herokuapp.com/collections/brookebc",
-		data: newTodo,
+		data: newToDo,
 		datatype: "json",
 		error: function(jqXHR, status, error){
 			alert("no! there is an error.");
 		},
 		success: function (data, datatype, jqXHR){
 			console.log("it hears this function");
-			return(data);
+			
+			$("#newitemtoadd").val(),
+
+			console.log(newToDo);
+
+        	ToDos.renderToDos(data);
 		}
-	});
-
-},
-	getToDo: function(data) { 
-		var newTodo = data;
-		var html = '';
-
-	$.ajax({
-		type:"GET",
-		url: "http://tiy-fee-rest.herokuapp.com/collections/brookebc",
-		data: data,
-		datatype: "json",
-		error: function(jqXHR, status, error){
-			alert("no! it is not posting this to the page.");
-		},
-		success: function (data, datatype, jqXHR){
-			console.log("yeah it is working down here");
-
-			for (var i = 0; i < data.length; i++){
-
-				console.log(data);
-				var obj = data;
-				var html = '';
-
-			var activeArrayString =_.template($("#toDoTmpl").html());
-				console.log("i got here");
-				// console.log(activeArrayString);
-			$("#righthere").append(activeArrayString, data);
-			};
-		},
 	});
 
 }
 
-};
+ // removeItem: function() {
+ //    var $thisPost = $(this).closest("article")
+ //    var postId = $thisPost.data("postid");
+
+ //    $.ajax({
+ //      url: "http://tiy-fee-rest.herokuapp.com/collections/myBlog/" + postId,
+ //      type: "DELETE",
+ //      error: function(jqXHR, status, error) {
+ //        alert("couldnt delete that thing");
+ //      }, 
+ //      success: function(data) {
+ //      	alert("yes! got rid of that todo");
+ //         myBlog.renderPosts();  
+
+ //      }
+ //    });
+ //  }
+
+};	
+	
+
+
+
+			
+	
+		
 
 
 
 
 
 
-// var tmpl = _.template(data);
-// 			$(el).html(tmpl(json));
 
-// var myObj = {
-// 	removeToDo: function(data) { 
-// 		var newTodo = data;
-
-
-
-// }
-
-// };
-
-// removeToDo(data);
-
-
-// $.ajax({
-// 	url: "http://tiy-fee-rest.herokuapp.com/collections/brookebc",
-// 	type:"GET",
-// 	datatype: "json",
-// 	error: function(jqXHR, status, error){
-// 		alert("no! there is an error.");
-// 	},
-// 	success: function (data, datatype, jqXHR){
-// 		console.log("success- it is GETting the info");
-// 	}
-// });
 
