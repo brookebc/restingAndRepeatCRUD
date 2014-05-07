@@ -93,14 +93,14 @@ body {
 }
 
 .container {
-    max-width:900px;
+    max-width:600px;
 }
 
 body {
   background-color: #f5f5f5;
   width: 600px;
   margin: 0 auto;
-  padding: 0px;
+  padding: 20px, 50px;
   min-height: 600px;
 
 }
@@ -110,39 +110,46 @@ body {
   color: #555;
   font-size: 22px;
   padding: 0 !important;
-  width: 500px;
   font-family: courier, monospace;
   border: 1px solid #dedede;
+  position: relative;
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.5);   
 }
 
 .list li {
   list-style: none;
   border-bottom: 1px dotted #ccc;
-  text-indent: 25px;
-  height: auto;
-  padding: 10px;
-  // text-transform: capitalize;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 10px 5px 10px 50px;
+  text-transform: capitalize;
 }
 
 .list li:hover {
-  background-color: #f0f0f0;
-  -webkit-transition: all 0.2s;
-  -moz-transition:    all 0.2s;
-  -ms-transition:     all 0.2s;
-  -o-transition:      all 0.2s;
+  background-color: #eee;
+  -webkit-transition: 0.2s;
+  -moz-transition:    0.2s;
+  -ms-transition:     0.2s;
+  -o-transition:      0.2s;
 }
 
-.lines {
+.list li:last-child {
+  border-bottom: 0;
+}
+
+.list:before {
+  content: "";
   border-left: 1px solid #ffaa9f;
   border-right: 1px solid #ffaa9f;
   width: 2px;
-  float: left;
-  min-height: 250px;
-  margin-left: 40px;
+  position: absolute;
+  height: 100%;
+  left: 40px;
 }
 
 .app-nav {
-    width: 500px;
+    width: 600px;
 }
 
 .app-nav ul > li{
@@ -158,42 +165,49 @@ body {
     height: 20px;
     // margin: 0px auto;
     padding: 0px;
-    width: 500px;
+    width: 100%;
 }
 
-.papers {
-  background-color: white;
-  height: 350px;
-  padding: 20px;
-  width: 260px;
-  -webkit-box-shadow: 
-        1px 1px   0 rgba(0,   0,   0,   0.100), 
-        3px 3px   0 rgba(255, 255, 255, 1.0), 
-        4px 4px   0 rgba(0,   0,   0,   0.125), 
-        6px 6px   0 rgba(255, 255, 255, 1.0),  
-        7px 7px   0 rgba(0,   0,   0,   0.150), 
-        9px 9px   0 rgba(255, 255, 255, 1.0),  
-        10px 10px 0 rgba(0,   0,   0,   0.175);
-  -moz-box-shadow: 
-        1px 1px   0 rgba(0,   0,   0,   0.100), 
-        3px 3px   0 rgba(255, 255, 255, 1.0), 
-        4px 4px   0 rgba(0,   0,   0,   0.125), 
-        6px 6px   0 rgba(255, 255, 255, 1.0),  
-        7px 7px   0 rgba(0,   0,   0,   0.150), 
-        9px 9px   0 rgba(255, 255, 255, 1.0),  
-        10px 10px 0 rgba(0,   0,   0,   0.175);
-  box-shadow: 
-        1px 1px   0 rgba(0,   0,   0,   0.100), 
-        3px 3px   0 rgba(255, 255, 255, 1.0), 
-        4px 4px   0 rgba(0,   0,   0,   0.125), 
-        6px 6px   0 rgba(255, 255, 255, 1.0),  
-        7px 7px   0 rgba(0,   0,   0,   0.150), 
-        9px 9px   0 rgba(255, 255, 255, 1.0),  
-        10px 10px 0 rgba(0,   0,   0,   0.175);
+// .papers {
+//   background-color: white;
+//   height: 350px;
+//   padding: 20px;
+//   width: 260px;
+//   -webkit-box-shadow: 
+//         1px 1px   0 rgba(0,   0,   0,   0.100), 
+//         3px 3px   0 rgba(255, 255, 255, 1.0), 
+//         4px 4px   0 rgba(0,   0,   0,   0.125), 
+//         6px 6px   0 rgba(255, 255, 255, 1.0),  
+//         7px 7px   0 rgba(0,   0,   0,   0.150), 
+//         9px 9px   0 rgba(255, 255, 255, 1.0),  
+//         10px 10px 0 rgba(0,   0,   0,   0.175);
+//   -moz-box-shadow: 
+//         1px 1px   0 rgba(0,   0,   0,   0.100), 
+//         3px 3px   0 rgba(255, 255, 255, 1.0), 
+//         4px 4px   0 rgba(0,   0,   0,   0.125), 
+//         6px 6px   0 rgba(255, 255, 255, 1.0),  
+//         7px 7px   0 rgba(0,   0,   0,   0.150), 
+//         9px 9px   0 rgba(255, 255, 255, 1.0),  
+//         10px 10px 0 rgba(0,   0,   0,   0.175);
+//   box-shadow: 
+//         1px 1px   0 rgba(0,   0,   0,   0.100), 
+//         3px 3px   0 rgba(255, 255, 255, 1.0), 
+//         4px 4px   0 rgba(0,   0,   0,   0.125), 
+//         6px 6px   0 rgba(255, 255, 255, 1.0),  
+//         7px 7px   0 rgba(0,   0,   0,   0.150), 
+//         9px 9px   0 rgba(255, 255, 255, 1.0),  
+//         10px 10px 0 rgba(0,   0,   0,   0.175);
     
-}
+// }
 
 .completed {
   text-decoration: line-through;
 
+}
+
+h4 {
+  color: #cd0000;
+  font-size: 42px;
+  letter-spacing: -2px;
+  text-align: left;
 }

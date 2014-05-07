@@ -2,7 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>todoerApp</title>
+        <title>ToDo it on the server</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="shortcut icon" href="/favicon.ico">
@@ -18,9 +18,10 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="../bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
-      <script type="template/html" id="putitheretmp">
-        <% _.each(activetodoarray, function(activetodoarray,index,list) { %>
-            <li><%= activetodoarray.activity %></li>
+
+        <script type="template/html" id="toDoTmpl">
+        <% _.each(data, function($el,index,list) { %>
+            <li><%= data.name %></li>
         <% }); %>
         </script>
 
@@ -32,44 +33,37 @@
                     <li class="active"><a href="index.html">Home</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
-                <h1 class="text-muted">ToDo to ToDA!</h1>
-            </div>
+                <h1 class="text-muted">ToDo it on the server</h1>
+            </div> <!-- end of header -->
         <body>
             <div class="topper">
                <!-- This is just an empty styled div for space-->
-
             </div>
      <!-- List starts here -->
-        <div>
-        <div class="lines"></div>
-         <p><input type="text" placeholder="What do you want to do?" id="newitemtoadd"></input><p>
-          <ul class="list" id="righthere">
-           <li class="completed">testing</li>
-          </ul>
-        </div>
-      
+            <div>
+                <form>
+                <input type="text" placeholder="What do you want to do?" id="newitemtoadd"></input>
+                <button type="submit">Add it</button>
+                <ul class="list" id="righthere">
+                    <li class="completed">testing</li>
+                </ul>
+                </form>
 
-        <div class="app-nav">
-            <ul>
-                <li>Items left</li>
-                <li>All</li>
-                <li>Active</li>
-                <li id="Donetotal"></li>
-                <li>Clear Completed</li>
-            </ul>
-        </div>
-        <div>
-        </div>
-    
-   
-
-        </body>
-
+            </div> <!-- end of div for my todolist form and content -->
+            <div class="app-nav">
+                <ul>
+                    <li>Items left</li>
+                    <li>All</li>
+                    <li>Active</li>
+                    <li id="Donetotal"></li>
+                    <li>Clear Completed</li>
+                </ul>
+            </div> <!-- end of nav/sorter buttons -->
+        </body> <!-- end of body -->
             <div class="footer">
                 <p><span class="glyphicon glyphicon-heart"></span> By Brooke Casey</p>
-            </div>
-
-        </div>
+            </div> <!-- end of footer -->
+        </div>  <!-- end of container -->
 
 
         <!-- build:js scripts/vendor.js -->
@@ -107,6 +101,7 @@
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/lists.js"></script>
+        <script src="scripts/doing.js"></script>
         <!-- endbuild -->
 </body>
 </html>
