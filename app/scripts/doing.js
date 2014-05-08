@@ -18,6 +18,8 @@ initStyling: function() {
 initEvents: function(){
 	$("form").on("submit",this.addToDos);
 	$(".list").on("click",".removeToDo", this.removeMe);
+	$(".list").on('dblclick', '.changeToDo', this.updateToDo);
+
 },
 
 renderToDos: function(){
@@ -37,7 +39,7 @@ renderToDos: function(){
 
 				for (var i = 0; i <todos.length; i++){
 					
-				html += '<li data-postId=' + todos[i]._id + '>' + todos[i].name + '<button class="glyphicon glyphicon-remove removeToDo" id="removeToDo"></button></li>';
+				html += '<li data-postId=' + todos[i]._id + '>' + todos[i].name + '<button class="glyphicon glyphicon-pencil changeToDo"></button><button class="glyphicon glyphicon-remove removeToDo" id="removeToDo"></button></li>';
 				}; 
 
 				console.log("yeah it is working down here- about to add all the todos to the page");
@@ -91,15 +93,74 @@ removeMe: function(e) {
         alert("error couldnt delete that thing");
     }, 
     success: function(data) {
-      	alert("yes! got rid of that todo");
+      	alert("yes! we got rid of that todo");
         ToDos.renderToDos(data);  
 
       }
     });
+},
+
+updateToDo: function(e) {
+	e.preventDefault();
+
+	console.log("you clicked and perhaps you want to change something");
+	
+	var oldText = $(this).closest("li").text();
+	console.log(oldText);
+
+	var oldpostId = $(this).closest("li").data("postid");
+    console.log(oldpostId);
+
+    $("<input type='text'>").appendTo(this).focus();
+    $(this).closest("li").find("input").val(oldText);
+
+	$(".list").on('focusout',"input", function () {
+
+	    var $this = $(this);
+	    $this.text = ($this.val() || oldText);
+	    console.log($this.text);
+	    $(this).closest("li").text($this.text);
+	    $this.remove();  // Don't just hide, remove the element.
+
+	    var updatedData = {
+              name: ($this.text)
+        };
+   
+    	$.ajax({
+			type:"PUT",
+			url: "http://tiy-fee-rest.herokuapp.com/collections/brookebc/" + oldpostId,
+			data: updatedData,
+			datatype: "JSON",
+			error: function(jqXHR, status, error){
+				alert("no! there is an error.");
+		},
+			success: function (data, datatype, jqXHR){
+				console.log("its gonna put it up there");
+
+				console.log(updatedData);
+				ToDos.renderToDos(data);
+        	
+		}
+	});
+
+
+});
+
 }
+    
+    
+};
 
 
-};	
+
+	
+
+
+
+
+
+
+
 	
 
 

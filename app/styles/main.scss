@@ -178,7 +178,6 @@ body {
 
 .completed {
   text-decoration: line-through;
-
 }
 
 h4 {
@@ -189,10 +188,12 @@ h4 {
 }
 
 .glyphicon-pencil {
-  padding-left: 400px;
+  margin-left:20px,
+  padding: 5px;
 }
 
-.glyphicon-ok {
+.glyphicon-remove {
+  margin-left:20px,
   padding: auto, auto, auto, 20px;
 }
 
