@@ -18,7 +18,8 @@ initStyling: function() {
 initEvents: function(){
 	$("form").on("submit",this.addToDos);
 	$(".list").on("click",".removeToDo", this.removeMe);
-	$(".list").on('dblclick', '.changeToDo', this.updateToDo);
+	$(".list").on('dblclick', '.changeToDo', this.selectToDo);
+	$(".list").on('focusout',"input", this.upateToDo);
 
 },
 
@@ -100,7 +101,7 @@ removeMe: function(e) {
     });
 },
 
-updateToDo: function(e) {
+selectToDo: function(e) {
 	e.preventDefault();
 
 	console.log("you clicked and perhaps you want to change something");
@@ -108,13 +109,16 @@ updateToDo: function(e) {
 	var oldText = $(this).closest("li").text();
 	console.log(oldText);
 
-	var oldpostId = $(this).closest("li").data("postid");
-    console.log(oldpostId);
-
     $("<input type='text'>").appendTo(this).focus();
     $(this).closest("li").find("input").val(oldText);
+	
+},
 
-	$(".list").on('focusout',"input", function () {
+upateToDo: function(e) {
+	e.preventDefault();
+
+var oldpostId = $(this).closest("li").data("postid");
+    	console.log(oldpostId);
 
 	    var $this = $(this);
 	    $this.text = ($this.val() || oldText);
@@ -143,14 +147,10 @@ updateToDo: function(e) {
 		}
 	});
 
-
-});
-
 }
     
     
-};
-
+}
 
 
 	
